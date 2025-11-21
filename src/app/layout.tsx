@@ -28,10 +28,8 @@ export default function RootLayout({
         <link rel="icon" href="/logo.jpg" type="image/jpg" />
       </header>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable}`}
       >
-
-
         {children}
       </body>
     </html>
