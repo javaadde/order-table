@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,14 +25,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <header>
+      <head>
         <link rel="icon" href="/logo.jpg" type="image/jpg" />
-      </header>
-      <body
-        className={`${geistSans.variable}`}
-      >
-        {children}
-      </body>
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`
+        (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "ua1yiclr0q");
+        `}
+        </Script>
+          <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-P5HG15H6CL"
+          strategy="afterInteractive"
+        />
+
+        {/* Google Analytics Config */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-P5HG15H6CL');
+          `}
+        </Script>
+        
+      </head>
+      <body className={`${geistSans.variable}`}>{children}</body>
     </html>
   );
 }
